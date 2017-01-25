@@ -47,9 +47,9 @@ const dropDice = {
     console.log(this.userScore + 2);
 
     if (this.userScore+2 === 7) {
-      this.gameOutcome.innerHTML = 'winner';
+      this.gameOutcome.innerHTML = 'Winner!';
     } else if (this.userScore+2 === 11) {
-      this.gameOutcome.innerHTML = 'Winner';
+      this.gameOutcome.innerHTML = 'Winner!';
     } else {
       this.gameOutcome.innerHTML = 'Roll Again!';
     }

@@ -23,9 +23,14 @@
   flex-direction: column;
   font-size: 1.5rem;
   justify-content: space-around;
-  margin: 0 auto;
+  margin: 1% auto;
   min-height: 200px;
   width: 85%;
+
+  .user-status {
+    min-height: 50px;
+  }
+
 
   .roller {
     border-radius: 25%;
