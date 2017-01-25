@@ -1,4 +1,6 @@
 const dropDice = {
+  diceDate: new Date(),
+  dateLocation: document.querySelector('.current-date-time'),
   rollerBtn: document.querySelector('.roller'),
   dice1: document.querySelector('.dice-one'),
   dice1Image: null,
@@ -27,6 +29,7 @@ const dropDice = {
   rounds: {
       //store information about round 1 (outcome: win or loss)
       //store "round" + i + "outcome=" win or lose?
+
   },
 
   //run randomArray generator for dice 1 and assign it to array index
@@ -47,9 +50,15 @@ const dropDice = {
     console.log(this.userScore + 2);
 
     if (this.userScore+2 === 7) {
-      this.gameOutcome.innerHTML = 'Winner!';
+      this.gameOutcome.innerHTML = `Winner! It took you ${this.i} tries!`;
+      this.i=0;
+      return; //why do I want this return to happen?
+
     } else if (this.userScore+2 === 11) {
-      this.gameOutcome.innerHTML = 'Winner!';
+      this.gameOutcome.innerHTML = `Winner! It took you ${this.i} tries!`;
+      this.i=0;
+      return;
+
     } else {
       this.gameOutcome.innerHTML = 'Roll Again!';
     }
@@ -66,6 +75,7 @@ const dropDice = {
     this.rollerBtn.addEventListener('click', () => {
       event.preventDefault();
 
+      this.dateLocation.innerHTML = this.diceDate;
       this.rollDice();
       this.updateDiceImages();
       this.winOrLose();
