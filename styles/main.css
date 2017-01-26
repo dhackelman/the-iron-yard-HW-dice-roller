@@ -78,12 +78,19 @@ img {
   min-height: 200px;
   width: 85%; }
   .game-container .user-status {
-    min-height: 50px; }
+    min-height: 85px; }
+  .game-container .round-stats, .game-container .roll-stats {
+    text-align: center; }
+  .game-container .roll-stats {
+    text-decoration: underline; }
   .game-container .roller {
     border-radius: 25%;
     font-size: 1rem;
     margin: 5%;
     width: 15%; }
+
+.win-total, .loss-total {
+  text-decoration: underline; }
 
 .dice-holder {
   display: flex;

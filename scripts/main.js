@@ -1,5 +1,5 @@
 const dropDice = {
-  diceDate: new Date(),
+  diceDate: new Date,
   dateLocation: document.querySelector('.current-date-time'),
   rollerBtn: document.querySelector('.roller'),
   dice1: document.querySelector('.dice-one'),
@@ -24,13 +24,35 @@ const dropDice = {
   ],
   i: 0,
   userScore: 0,
-  gameOutcome: document.querySelector('.game-stats'),
+  gameOutcome: document.querySelector('.round-stats'),
+  rollCounter: document.querySelector('.roll-stats'),
+  logWins: document.querySelector('.win-total'),
+  logLosses: document.querySelector('.loss-total'),
+  winTotal: 1,
+  lossTotal: 1,
+  rollNumber: 1,
 
-  rounds: {
+  rounds: [
       //store information about round 1 (outcome: win or loss)
-      //store "round" + i + "outcome=" win or lose?
+      //store "round" + i + "outcome=" win or lose? + diceDate
 
+  ],
+
+  winnerFunction() {
+    this.gameOutcome.innerHTML = `Winner! It took you ${this.i} tries!`;
+    this.rollCounter.innerHTML = ``;
+    this.logWins.innerHTML = this.winTotal++;
+    this.rollNumber = 1;
   },
+
+  loserFunction() {
+    this.gameOutcome.innerHTML = `Roll Again!`;
+    this.rollCounter.innerHTML = `This is roll # ${this.rollNumber++}.`;
+    this.logLosses.innerHTML = this.lossTotal++;
+  },
+
+  gameLength() {},
+
 
   //run randomArray generator for dice 1 and assign it to array index
   rollDice() {
@@ -50,17 +72,25 @@ const dropDice = {
     console.log(this.userScore + 2);
 
     if (this.userScore+2 === 7) {
-      this.gameOutcome.innerHTML = `Winner! It took you ${this.i} tries!`;
+      this.winnerFunction();
+      this.rounds.push(this.i + "," + "winner, " + this.diceDate);
+      console.log(this.rounds);
+      //run function to push results/round# to our rounds array
       this.i=0;
       return; //why do I want this return to happen?
 
     } else if (this.userScore+2 === 11) {
-      this.gameOutcome.innerHTML = `Winner! It took you ${this.i} tries!`;
+      this.winnerFunction();
+      this.rounds.push(this.i + "," + "winner, " + this.diceDate);
+      console.log(this.rounds);
       this.i=0;
       return;
 
     } else {
-      this.gameOutcome.innerHTML = 'Roll Again!';
+      this.loserFunction();
+      this.rounds.push(this.i + "," + "loser, " + this.diceDate);
+      console.log(this.rounds);
+      return;
     }
   },
 
@@ -69,9 +99,10 @@ const dropDice = {
     this.dice2.innerHTML = "<img src=" + this.dice2Image + ">";
   },
 
-
-
   init() {
+    //set Date on page load
+    this.dateLocation.innerHTML = this.diceDate;
+    //run eventListener
     this.rollerBtn.addEventListener('click', () => {
       event.preventDefault();
 
@@ -79,6 +110,7 @@ const dropDice = {
       this.rollDice();
       this.updateDiceImages();
       this.winOrLose();
+
 
     })
   }

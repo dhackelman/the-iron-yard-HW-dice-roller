@@ -28,7 +28,16 @@
   width: 85%;
 
   .user-status {
-    min-height: 50px;
+    min-height: 85px;
+  }
+
+  .round-stats {
+    text-align: center;
+  }
+
+  .roll-stats {
+    @extend .round-stats;
+    text-decoration: underline;
   }
 
 
@@ -38,6 +47,10 @@
     margin: 5%;
     width: 15%;
   }
+}
+
+.win-total, .loss-total {
+  text-decoration: underline;
 }
 
 .dice-holder {
